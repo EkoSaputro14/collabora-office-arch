@@ -25,7 +25,7 @@ depends=(
     'zxing-cpp' 'xdg-utils' 'fontconfig' 'zlib' 'libpng' 'freetype2'
     'cairo' 'libx11' 'expat' 'glib2' 'boost-libs' 'libtiff' 'dbus' 'glibc'
     'librevenge' 'libxext' 'openjpeg2' 'argon2' 'md4c' 'libxml2' 'libmythes'
-    'bluez-libs' 'python-lxml'
+    'bluez-libs' 'python-lxml' 'libldap'
 )
 
 # Build Tools & Development Headers
@@ -171,6 +171,9 @@ build() {
         --without-system-dragonbox \
         --without-system-libfixmath \
         --without-system-frozen \
+        --without-system-zxcvbn \
+        --without-system-jars \
+        --disable-report-builder \
         --without-fonts
 
     echo "==> Compiling Collabora Office..."

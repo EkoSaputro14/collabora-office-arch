@@ -114,6 +114,7 @@ pkgbase = collabora-office
 	depends = libmythes
 	depends = bluez-libs
 	depends = python-lxml
+	depends = libldap
 	optdepends = gtk3: Native GTK3 desktop interface (GNOME/XFCE)
 	optdepends = qt6-base: Native Qt6 desktop interface (KDE Plasma)
 	optdepends = ttf-liberation: Standard Liberation font family
