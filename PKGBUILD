@@ -13,7 +13,7 @@ install="${pkgname}.install"
 
 # Arch Linux System Dependencies (Shared Libraries)
 depends=(
-    'curl>=7.20.0' 'hunspell>=1.2.8' 'python' 'libwpd>=0.9.2' 'libwps'
+    'curl>=7.20.0' 'hunspell>=1.2.8' 'python' 'libwpd>=0.9.2' 'libwps' 'libwpg'
     'neon>=0.28.6' 'pango' 'nspr' 'libjpeg-turbo' 'libxrandr' 'libgl'
     'redland' 'hyphen' 'lpsolve' 'gcc-libs' 'libgcc' 'sh' 'graphite' 'icu' 'libxslt'
     'lcms2' 'poppler' 'libvisio' 'libetonyek' 'libodfgen' 'libcdr'
@@ -24,15 +24,16 @@ depends=(
     'libfreehand' 'libstaroffice' 'libepubgen' 'libqxp' 'libepoxy'
     'zxing-cpp' 'xdg-utils' 'fontconfig' 'zlib' 'libpng' 'freetype2'
     'cairo' 'libx11' 'expat' 'glib2' 'boost-libs' 'libtiff' 'dbus' 'glibc'
-    'librevenge' 'libxext' 'openjpeg2' 'argon2' 'md4c'
+    'librevenge' 'libxext' 'openjpeg2' 'argon2' 'md4c' 'libxml2' 'libmythes'
 )
 
 # Build Tools & Development Headers
 makedepends=(
     'git' 'gcc' 'clang' 'ccache' 'perl-archive-zip' 'zip' 'unzip'
-    'gperf' 'gtk3' 'qt6-base' 'boost' 'mdds' 'glm'
-    'box2d' 'cppunit' 'beanshell' 'ant' 'java-environment=17'
-    'coin-or-mp' 'doxygen' 'wget'
+    'gperf' 'gtk3' 'qt6-base' 'boost' 'mdds' 'glm' 'box2d'
+    'cppunit' 'beanshell' 'ant' 'java-environment=17'
+    'coin-or-mp' 'doxygen' 'wget' 'abseil-cpp' 'gobject-introspection'
+    'python-setuptools' 'libffi' 'sane' 'unixodbc' 'gst-plugins-base-libs'
 )
 
 optdepends=(

@@ -28,11 +28,19 @@ pkgbase = collabora-office
 	makedepends = coin-or-mp
 	makedepends = doxygen
 	makedepends = wget
+	makedepends = abseil-cpp
+	makedepends = gobject-introspection
+	makedepends = python-setuptools
+	makedepends = libffi
+	makedepends = sane
+	makedepends = unixodbc
+	makedepends = gst-plugins-base-libs
 	depends = curl>=7.20.0
 	depends = hunspell>=1.2.8
 	depends = python
 	depends = libwpd>=0.9.2
 	depends = libwps
+	depends = libwpg
 	depends = neon>=0.28.6
 	depends = pango
 	depends = nspr
@@ -100,6 +108,8 @@ pkgbase = collabora-office
 	depends = openjpeg2
 	depends = argon2
 	depends = md4c
+	depends = libxml2
+	depends = libmythes
 	optdepends = gtk3: Native GTK3 desktop interface (GNOME/XFCE)
 	optdepends = qt6-base: Native Qt6 desktop interface (KDE Plasma)
 	optdepends = ttf-liberation: Standard Liberation font family
