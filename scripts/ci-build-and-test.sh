@@ -15,21 +15,16 @@ pacman-key --populate archlinux
 pacman -Syu --noconfirm
 
 echo "================================================================="
-echo " [STEP 2] Installing Build Toolchain & Dependencies"
+echo " [STEP 2] Installing Core Build Tools"
 echo "================================================================="
-pacman -S --needed --noconfirm \
-  git ccache sudo namcap curl hunspell python libwpd libwps neon pango \
-  nspr libjpeg-turbo libxrandr libgl redland hyphen lpsolve graphite icu \
-  libxslt lcms2 poppler libvisio libetonyek libodfgen libcdr libmspub \
-  harfbuzz-icu nss clucene hicolor-icon-theme libpagemaker libxinerama \
-  libabw libmwaw libe-book libcups liblangtag libexttextcat liborcus \
-  libwebp libcmis libtommath libzmf libatomic_ops xmlsec libnumbertext \
-  gpgmepp libfreehand libstaroffice libepubgen libqxp libepoxy zxing-cpp \
-  xdg-utils fontconfig zlib libpng freetype2 cairo libx11 expat glib2 \
-  boost-libs libtiff dbus glibc librevenge libxext openjpeg2 argon2 md4c \
-  gcc clang perl-archive-zip zip unzip gperf gtk3 qt6-base boost mdds \
-  glm fast_float dragonbox box2d cppunit beanshell ant java-environment=17 \
-  coin-or-mp doxygen
+# Only install core packaging tools; all other dependencies are resolved
+# automatically by makepkg -s to test unattended dependency resolution
+pacman -S --needed --noconfirm base-devel git ccache sudo namcap wget curl
+
+# Optimize makepkg for CI environment
+echo 'GITFLAGS="--depth=1"' >> /etc/makepkg.conf
+echo 'BUILDENV=(!distcc color !leflags ccache !check !sign)' >> /etc/makepkg.conf
+echo 'MAKEFLAGS="-j$(nproc)"' >> /etc/makepkg.conf
 
 echo "================================================================="
 echo " [STEP 3] Setting up Unprivileged Build User (builder)"
@@ -45,15 +40,16 @@ echo " [STEP 4] Running Namcap on PKGBUILD"
 echo "================================================================="
 su - builder -c "
   cd ${WORKSPACE}
+  echo 'Running namcap on PKGBUILD...'
   namcap PKGBUILD 2>&1 | tee ${ARTIFACTS_DIR}/namcap-pkgbuild.log || true
 "
 
 echo "================================================================="
-echo " [STEP 5] Building Native Package via makepkg"
+echo " [STEP 5] Building Native Package via makepkg -s"
 echo "================================================================="
+# makepkg -s will automatically install all depends and makedepends via pacman
 su - builder -c "
   cd ${WORKSPACE}
-  export MAKEFLAGS=\"-j\$(nproc)\"
   makepkg -s --noconfirm 2>&1 | tee ${ARTIFACTS_DIR}/makepkg-build.log
 "
 

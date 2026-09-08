@@ -15,7 +15,7 @@ install="${pkgname}.install"
 depends=(
     'curl>=7.20.0' 'hunspell>=1.2.8' 'python' 'libwpd>=0.9.2' 'libwps'
     'neon>=0.28.6' 'pango' 'nspr' 'libjpeg-turbo' 'libxrandr' 'libgl'
-    'redland' 'hyphen' 'lpsolve' 'libstdc++' 'libgcc' 'sh' 'graphite' 'icu' 'libxslt'
+    'redland' 'hyphen' 'lpsolve' 'gcc-libs' 'libgcc' 'sh' 'graphite' 'icu' 'libxslt'
     'lcms2' 'poppler' 'libvisio' 'libetonyek' 'libodfgen' 'libcdr'
     'libmspub' 'harfbuzz-icu' 'nss' 'clucene' 'hicolor-icon-theme' 'libpagemaker'
     'libxinerama' 'libabw' 'libmwaw' 'libe-book' 'libcups'
@@ -31,8 +31,8 @@ depends=(
 makedepends=(
     'git' 'gcc' 'clang' 'ccache' 'perl-archive-zip' 'zip' 'unzip'
     'gperf' 'gtk3' 'qt6-base' 'boost' 'mdds' 'glm' 'fast_float'
-    'dragonbox' 'box2d' 'cppunit' 'beanshell' 'ant' 'java-environment=17'
-    'coin-or-mp' 'doxygen'
+    'box2d' 'cppunit' 'beanshell' 'ant' 'java-environment=17'
+    'coin-or-mp' 'doxygen' 'wget'
 )
 
 optdepends=(

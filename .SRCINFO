@@ -21,7 +21,6 @@ pkgbase = collabora-office
 	makedepends = mdds
 	makedepends = glm
 	makedepends = fast_float
-	makedepends = dragonbox
 	makedepends = box2d
 	makedepends = cppunit
 	makedepends = beanshell
@@ -29,6 +28,7 @@ pkgbase = collabora-office
 	makedepends = java-environment=17
 	makedepends = coin-or-mp
 	makedepends = doxygen
+	makedepends = wget
 	depends = curl>=7.20.0
 	depends = hunspell>=1.2.8
 	depends = python
@@ -43,7 +43,7 @@ pkgbase = collabora-office
 	depends = redland
 	depends = hyphen
 	depends = lpsolve
-	depends = libstdc++
+	depends = gcc-libs
 	depends = libgcc
 	depends = sh
 	depends = graphite
