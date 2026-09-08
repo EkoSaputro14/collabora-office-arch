@@ -1,0 +1,20 @@
+# Makepkg build artifacts
+/src/
+/pkg/
+/fakeinstall/
+*.pkg.tar.zst
+*.pkg.tar.xz
+*.pkg.tar.gz
+*.log
+
+# Git submodules or source trees
+/core/
+/ext_sources/
+
+# ccache
+.ccache/
+
+# Temporary files
+*.tmp
+*~
+.DS_Store

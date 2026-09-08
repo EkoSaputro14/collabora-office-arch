@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Collabora Office @APP@ Document
+Comment=Create a new Collabora Office @APP@ Document
+Type=Link
+URL=.source/soffice.@EXT@
+Icon=collaboraoffice-@EXT@

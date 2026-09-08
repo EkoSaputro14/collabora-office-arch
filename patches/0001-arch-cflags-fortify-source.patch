@@ -1,0 +1,11 @@
+--- a/solenv/gbuild/platform/com_GCC_defs.mk
++++ b/solenv/gbuild/platform/com_GCC_defs.mk
+@@ -67,7 +67,7 @@
+ # * _FORTIFY_SOURCE=2 is already set in gentoo/fedora/etc. default compiler flags,
+ #   forcing it here avoids breakage if it is disabled by host compiler
+ # * _GLIBCXX_ASSERTIONS checks bounds on C++ standard library containers
+-gb_CFLAGS_FORTIFY := -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS
++gb_CFLAGS_FORTIFY := -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=2 -D_GLIBCXX_ASSERTIONS
+ 
+ gb_CXXFLAGS_FORTIFY := $(gb_CFLAGS_FORTIFY)
+ 

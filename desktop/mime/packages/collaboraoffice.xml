@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/vnd.sun.xml.draw">
+    <comment>OpenOffice.org 1.0 Drawing</comment>
+    <glob pattern="*.sxd"/>
+  </mime-type>
+  <mime-type type="application/vnd.sun.xml.draw.template">
+    <comment>OpenOffice.org 1.0 Drawing Template</comment>
+    <glob pattern="*.std"/>
+  </mime-type>
+  <mime-type type="application/vnd.openofficeorg.extension">
+    <comment>LibreOffice Extension</comment>
+    <glob pattern="*.oxt"/>
+  </mime-type>
+  <mime-type type="application/vnd.sun.xml.math">
+    <comment>OpenOffice.org 1.0 Formula</comment>
+    <glob pattern="*.sxm"/>
+  </mime-type>
+  <mime-type type="application/vnd.sun.xml.writer.global">
+    <comment>OpenOffice.org 1.0 Master Document</comment>
+    <glob pattern="*.sxg"/>
+  </mime-type>
+  <mime-type type="application/vnd.ms-excel">
+    <comment>Microsoft Excel Worksheet</comment>
+    <glob pattern="*.xls"/>
+  </mime-type>
+  <mime-type type="application/vnd.ms-excel.sheet.macroEnabled.12">
+    <comment>Microsoft Excel Worksheet</comment>
+    <glob pattern="*.xlsm"/>
+  </mime-type>
+  <mime-type type="application/vnd.ms-excel.sheet.binary.macroEnabled.12">
+    <comment>Microsoft Excel Worksheet</comment>
+    <glob pattern="*.xlsb"/>
+  </mime-type>
+  <mime-type type="application/vnd.ms-excel.template.macroEnabled.12">
+    <comment>Microsoft Excel Worksheet Template</comment>
+    <glob pattern="*.xltm"/>
+  </mime-type>
+  <mime-type type="application/vnd.ms-powerpoint">
+    <comment>Microsoft PowerPoint Presentation</comment>
+    <glob pattern="*.ppt"/>
+  </mime-type>
+  <mime-type type="application/vnd.ms-powerpoint.presentation.macroEnabled.12">
+    <comment>Microsoft PowerPoint Presentation</comment>
+    <glob pattern="*.pptm"/>
+  </mime-type>
+  <mime-type type="application/vnd.ms-powerpoint.template.macroEnabled.12">
+    <comment>Microsoft PowerPoint Presentation Template</comment>
+    <glob pattern="*.potm"/>
+  </mime-type>
+  <mime-type type="application/msword">
+    <comment>Microsoft Word Document</comment>
+    <glob pattern="*.doc"/>
+  </mime-type>
+  <mime-type type="application/vnd.ms-word.document.macroEnabled.12">
+    <comment>Microsoft Word Document</comment>
+    <glob pattern="*.docm"/>
+  </mime-type>
+  <mime-type type="application/vnd.ms-word">
+    <comment>Microsoft Word Document</comment>
+    <glob pattern="*.doc"/>
+  </mime-type>
+  <mime-type type="application/vnd.ms-word.template.macroEnabled.12">
+    <comment>Microsoft Word Document Template</comment>
+    <glob pattern="*.dotm"/>
+  </mime-type>
+  <mime-type type="application/vnd.sun.xml.base">
+    <comment>OpenDocument Database</comment>
+    <glob pattern="*.odb"/>
+    <magic>
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.sun.xml.base" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.graphics">
+    <comment>OpenDocument Drawing</comment>
+    <glob pattern="*.odg"/>
+    <magic>
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.graphics" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.graphics-flat-xml">
+    <comment>OpenDocument Drawing (Flat XML)</comment>
+    <glob pattern="*.fodg"/>
+    <sub-class-of type="application/xml"/>
+    <magic priority="60">
+        <match value="&lt;?xml" type="string" offset="0">
+            <match value="office:document" type="string" offset="4:100">
+                <match value="office:mimetype=&quot;application/vnd.oasis.opendocument.graphics-flat-xml&quot;" type="string" offset="100:4000"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.graphics-template">
+    <comment>OpenDocument Drawing Template</comment>
+    <glob pattern="*.otg"/>
+    <magic priority="60">
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.graphics-template" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.formula">
+    <comment>OpenDocument Formula</comment>
+    <glob pattern="*.odf"/>
+    <magic>
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.formula" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.text-master">
+    <comment>OpenDocument Master Document</comment>
+    <glob pattern="*.odm"/>
+    <magic priority="60">
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.text-master" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.text-master-template">
+    <comment>OpenDocument Master Document Template</comment>
+    <glob pattern="*.otm"/>
+    <magic priority="60">
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.text-master-template" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.presentation">
+    <comment>OpenDocument Presentation</comment>
+    <glob pattern="*.odp"/>
+    <magic>
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.presentation" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.presentation-flat-xml">
+    <comment>OpenDocument Presentation (Flat XML)</comment>
+    <glob pattern="*.fodp"/>
+    <sub-class-of type="application/xml"/>
+    <magic priority="60">
+        <match value="&lt;?xml" type="string" offset="0">
+            <match value="office:document" type="string" offset="4:100">
+                <match value="office:mimetype=&quot;application/vnd.oasis.opendocument.presentation-flat-xml&quot;" type="string" offset="100:4000"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.presentation-template">
+    <comment>OpenDocument Presentation Template</comment>
+    <glob pattern="*.otp"/>
+    <magic priority="60">
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.presentation-template" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.spreadsheet">
+    <comment>OpenDocument Spreadsheet</comment>
+    <glob pattern="*.ods"/>
+    <magic>
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.spreadsheet" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.spreadsheet-flat-xml">
+    <comment>OpenDocument Spreadsheet (Flat XML)</comment>
+    <glob pattern="*.fods"/>
+    <sub-class-of type="application/xml"/>
+    <magic priority="60">
+        <match value="&lt;?xml" type="string" offset="0">
+            <match value="office:document" type="string" offset="4:100">
+                <match value="office:mimetype=&quot;application/vnd.oasis.opendocument.spreadsheet-flat-xml&quot;" type="string" offset="100:4000"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.spreadsheet-template">
+    <comment>OpenDocument Spreadsheet Template</comment>
+    <glob pattern="*.ots"/>
+    <magic priority="60">
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.spreadsheet-template" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.text">
+    <comment>OpenDocument Text</comment>
+    <glob pattern="*.odt"/>
+    <magic>
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.text" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.text-flat-xml">
+    <comment>OpenDocument Text (Flat XML)</comment>
+    <glob pattern="*.fodt"/>
+    <sub-class-of type="application/xml"/>
+    <magic priority="60">
+        <match value="&lt;?xml" type="string" offset="0">
+            <match value="office:document" type="string" offset="4:100">
+                <match value="office:mimetype=&quot;application/vnd.oasis.opendocument.text-flat-xml&quot;" type="string" offset="100:4000"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.text-template">
+    <comment>OpenDocument Text Template</comment>
+    <glob pattern="*.ott"/>
+    <magic priority="60">
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.text-template" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.oasis.opendocument.text-web">
+    <comment>HTML Document Template</comment>
+    <glob pattern="*.oth"/>
+    <magic priority="60">
+        <match value="PK\003\004" type="string" offset="0">
+            <match value="mimetype" type="string" offset="30">
+                <match value="application/vnd.oasis.opendocument.text-web" type="string" offset="38"/>
+            </match>
+        </match>
+    </magic>
+  </mime-type>
+  <mime-type type="application/vnd.openxmlformats-officedocument.presentationml.presentation">
+    <comment>Microsoft PowerPoint Presentation</comment>
+    <glob pattern="*.pptx"/>
+  </mime-type>
+  <mime-type type="application/vnd.openxmlformats-officedocument.presentationml.template">
+    <comment>Microsoft PowerPoint Presentation Template</comment>
+    <glob pattern="*.potx"/>
+  </mime-type>
+  <mime-type type="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
+    <comment>Microsoft Excel Worksheet</comment>
+    <glob pattern="*.xlsx"/>
+  </mime-type>
+  <mime-type type="application/vnd.openxmlformats-officedocument.spreadsheetml.template">
+    <comment>Microsoft Excel Worksheet Template</comment>
+    <glob pattern="*.xltx"/>
+  </mime-type>
+  <mime-type type="application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+    <comment>Microsoft Word Document</comment>
+    <glob pattern="*.docx"/>
+  </mime-type>
+  <mime-type type="application/vnd.openxmlformats-officedocument.wordprocessingml.template">
+    <comment>Microsoft Word Document Template</comment>
+    <glob pattern="*.dotx"/>
+  </mime-type>
+  <mime-type type="application/vnd.sun.xml.impress">
+    <comment>OpenOffice.org 1.0 Presentation</comment>
+    <glob pattern="*.sxi"/>
+  </mime-type>
+  <mime-type type="application/vnd.sun.xml.impress.template">
+    <comment>OpenOffice.org 1.0 Presentation Template</comment>
+    <glob pattern="*.sti"/>
+  </mime-type>
+  <mime-type type="application/vnd.sun.xml.calc">
+    <comment>OpenOffice.org 1.0 Spreadsheet</comment>
+    <glob pattern="*.sxc"/>
+  </mime-type>
+  <mime-type type="application/vnd.sun.xml.calc.template">
+    <comment>OpenOffice.org 1.0 Spreadsheet Template</comment>
+    <glob pattern="*.stc"/>
+  </mime-type>
+  <mime-type type="application/vnd.sun.xml.writer">
+    <comment>OpenOffice.org 1.0 Text Document</comment>
+    <glob pattern="*.sxw"/>
+  </mime-type>
+  <mime-type type="application/vnd.sun.xml.writer.template">
+    <comment>OpenOffice.org 1.0 Text Document Template</comment>
+    <glob pattern="*.stw"/>
+  </mime-type>
+</mime-info>

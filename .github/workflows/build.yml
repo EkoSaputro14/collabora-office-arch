@@ -1,0 +1,84 @@
+name: Build Collabora Office Arch Package
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-arch-package:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:base-devel
+      options: --privileged
+
+    steps:
+      - name: Update system & Install Build Prerequisites
+        run: |
+          pacman -Syu --noconfirm
+          pacman -S --needed --noconfirm \
+            git ccache sudo \
+            curl hunspell python libwpd libwps neon pango nspr libjpeg-turbo \
+            libxrandr libgl redland hyphen lpsolve graphite icu libxslt lcms2 \
+            poppler libvisio libetonyek libodfgen libcdr libmspub harfbuzz-icu \
+            nss clucene hicolor-icon-theme libpagemaker libxinerama libabw \
+            libmwaw libe-book libcups liblangtag libexttextcat liborcus libwebp \
+            libcmis libtommath libzmf libatomic_ops xmlsec libnumbertext gpgmepp \
+            libfreehand libstaroffice libepubgen libqxp libepoxy zxing-cpp \
+            xdg-utils fontconfig zlib libpng freetype2 cairo libx11 expat glib2 \
+            boost-libs libtiff dbus glibc librevenge libxext openjpeg2 argon2 md4c \
+            gcc clang perl-archive-zip zip unzip gperf gtk3 qt6-base boost mdds \
+            glm fast_float dragonbox box2d cppunit beanshell ant \
+            java-environment=17 coin-or-mp doxygen
+
+      - name: Setup Non-Root Build User
+        run: |
+          useradd -m -G wheel builder
+          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+          mkdir -p /workspace
+          chown -R builder:builder /workspace
+
+      - name: Checkout Packaging Repository
+        uses: actions/checkout@v4
+        with:
+          path: /workspace/collabora-office-arch
+
+      - name: Setup ccache
+        run: |
+          mkdir -p /home/builder/.ccache
+          chown -R builder:builder /home/builder/.ccache
+
+      - name: Cache ccache
+        uses: actions/cache@v4
+        with:
+          path: /home/builder/.ccache
+          key: ccache-collabora-${{ github.sha }}
+          restore-keys: |
+            ccache-collabora-
+
+      - name: Build Package via makepkg
+        run: |
+          su - builder -c "
+            cd /workspace/collabora-office-arch
+            makepkg -s --noconfirm
+          "
+
+      - name: Run Structural Package Verification
+        run: |
+          su - builder -c "
+            cd /workspace/collabora-office-arch
+            ./testing/test-pkg.sh
+          "
+
+      - name: Upload Native Package Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: collabora-office-x86_64.pkg.tar.zst
+          path: /workspace/collabora-office-arch/collabora-office-*.pkg.tar.zst
+          if-no-files-found: error
