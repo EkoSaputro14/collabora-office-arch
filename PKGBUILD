@@ -25,6 +25,7 @@ depends=(
     'zxing-cpp' 'xdg-utils' 'fontconfig' 'zlib' 'libpng' 'freetype2'
     'cairo' 'libx11' 'expat' 'glib2' 'boost-libs' 'libtiff' 'dbus' 'glibc'
     'librevenge' 'libxext' 'openjpeg2' 'argon2' 'md4c' 'libxml2' 'libmythes'
+    'bluez-libs' 'python-lxml'
 )
 
 # Build Tools & Development Headers
@@ -34,6 +35,7 @@ makedepends=(
     'cppunit' 'beanshell' 'ant' 'java-environment=17'
     'coin-or-mp' 'doxygen' 'wget' 'abseil-cpp' 'gobject-introspection'
     'python-setuptools' 'libffi' 'sane' 'unixodbc' 'gst-plugins-base-libs'
+    'mariadb-libs' 'postgresql-libs' 'rhino'
 )
 
 optdepends=(
@@ -159,6 +161,10 @@ build() {
         --with-external-dict-dir=/usr/share/hunspell \
         --with-external-hyph-dir=/usr/share/hyphen \
         --with-external-thes-dir=/usr/share/mythes \
+        --with-jdk-home="/usr/lib/jvm/default" \
+        --with-ant-home="/usr/share/ant" \
+        --enable-openssl \
+        --disable-dependency-tracking \
         --without-system-firebird \
         --without-system-hsqldb \
         --without-system-box2d \
