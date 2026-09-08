@@ -30,7 +30,7 @@ depends=(
 # Build Tools & Development Headers
 makedepends=(
     'git' 'gcc' 'clang' 'ccache' 'perl-archive-zip' 'zip' 'unzip'
-    'gperf' 'gtk3' 'qt6-base' 'boost' 'mdds' 'glm' 'fast_float'
+    'gperf' 'gtk3' 'qt6-base' 'boost' 'mdds' 'glm'
     'box2d' 'cppunit' 'beanshell' 'ant' 'java-environment=17'
     'coin-or-mp' 'doxygen' 'wget'
 )
@@ -102,7 +102,6 @@ build() {
         --mandir=/usr/share/man \
         --with-vendor="Collabora Productivity Ltd." \
         --with-branding=icon-themes/galaxy/brand_cp \
-        --with-install-dirname=collaboraoffice \
         --with-extra-buildid="${pkgver}-${pkgrel}-Arch" \
         --with-parallelism="${_PARALLEL}" \
         --enable-release-build \
@@ -155,7 +154,6 @@ build() {
         --with-system-libebook \
         --with-system-libabw \
         --with-system-coinmp \
-        --with-system-fast-float \
         --with-system-dicts \
         --with-external-dict-dir=/usr/share/hunspell \
         --with-external-hyph-dir=/usr/share/hyphen \

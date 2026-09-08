@@ -20,7 +20,6 @@ pkgbase = collabora-office
 	makedepends = boost
 	makedepends = mdds
 	makedepends = glm
-	makedepends = fast_float
 	makedepends = box2d
 	makedepends = cppunit
 	makedepends = beanshell
