@@ -81,7 +81,7 @@ prepare() {
 
     # Pre-fetch required internal tarballs according to download.lst
     if [ ! -f "src.downloaded" ]; then
-        msg2 "Fetching external dependencies defined in download.lst..."
+        echo "==> Fetching external dependencies defined in download.lst..."
         make fetch || true
         touch src.downloaded
     fi
@@ -92,7 +92,7 @@ build() {
 
     _PARALLEL=$(nproc)
 
-    msg2 "Configuring Collabora Office Desktop build with ${_PARALLEL} jobs..."
+    echo "==> Configuring Collabora Office Desktop build with ${_PARALLEL} jobs..."
 
     ./autogen.sh \
         --prefix=/usr \
@@ -168,10 +168,10 @@ build() {
         --without-system-frozen \
         --without-fonts
 
-    msg2 "Compiling Collabora Office..."
+    echo "==> Compiling Collabora Office..."
     make build
 
-    msg2 "Staging install via distro-pack-install..."
+    echo "==> Staging install via distro-pack-install..."
     mkdir -p "${srcdir}/fakeinstall"
     make DESTDIR="${srcdir}/fakeinstall" distro-pack-install
 }
@@ -227,28 +227,7 @@ EOF
         fi
     done
 
-    # 6. Desktop Integration & MIME associations
-    install -dm755 "${pkgdir}/usr/share/applications"
-    install -dm755 "${pkgdir}/usr/share/mime/packages"
-
-    if [ -d "${startdir}/desktop" ]; then
-        cp -f "${startdir}/desktop"/collaboraoffice-*.desktop "${pkgdir}/usr/share/applications/" 2>/dev/null || true
-        if [ -f "${startdir}/desktop/mime/packages/collaboraoffice.xml" ]; then
-            cp -f "${startdir}/desktop/mime/packages/collaboraoffice.xml" "${pkgdir}/usr/share/mime/packages/"
-        fi
-        if [ -d "${startdir}/desktop/metainfo" ]; then
-            install -dm755 "${pkgdir}/usr/share/metainfo"
-            cp -f "${startdir}/desktop/metainfo"/* "${pkgdir}/usr/share/metainfo/" 2>/dev/null || true
-        fi
-    fi
-
-    # 7. Brand Icons
-    if [ -d "${startdir}/icons/hicolor" ]; then
-        install -dm755 "${pkgdir}/usr/share/icons"
-        cp -a "${startdir}/icons/hicolor" "${pkgdir}/usr/share/icons/"
-    fi
-
-    # 8. Desktop document templates
+    # 6. Desktop document templates
     install -dm755 "${pkgdir}/usr/share/templates/.source"
     if [ -d "${srcdir}/core/extras/source/shellnew" ]; then
         install -m644 "${srcdir}/core/extras/source/shellnew"/soffice.* \
