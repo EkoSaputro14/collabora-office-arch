@@ -19,7 +19,7 @@ depends=(
     'lcms2' 'poppler' 'libvisio' 'libetonyek' 'libodfgen' 'libcdr'
     'libmspub' 'harfbuzz-icu' 'nss' 'clucene' 'hicolor-icon-theme' 'libpagemaker'
     'libxinerama' 'libabw' 'libmwaw' 'libe-book' 'libcups'
-    'liblangtag' 'libexttextcat' 'liborcus' 'libwebp' 'libcmis'
+    'liblangtag' 'libexttextcat' 'libwebp' 'libcmis'
     'libtommath' 'libzmf' 'libatomic_ops' 'xmlsec' 'libnumbertext' 'gpgmepp'
     'libfreehand' 'libstaroffice' 'libepubgen' 'libqxp' 'libepoxy'
     'zxing-cpp' 'xdg-utils' 'fontconfig' 'zlib' 'libpng' 'freetype2'
@@ -31,9 +31,9 @@ depends=(
 # Build Tools & Development Headers
 makedepends=(
     'git' 'gcc' 'clang' 'ccache' 'perl-archive-zip' 'zip' 'unzip'
-    'gperf' 'gtk3' 'qt6-base' 'boost' 'mdds' 'glm' 'box2d'
+    'gperf' 'gtk3' 'qt6-base' 'boost' 'glm' 'box2d'
     'cppunit' 'beanshell' 'ant' 'java-environment=17'
-    'coin-or-mp' 'doxygen' 'wget' 'abseil-cpp' 'gobject-introspection'
+    'coin-or-mp' 'coin-or-coinutils' 'doxygen' 'wget' 'abseil-cpp' 'gobject-introspection'
     'python-setuptools' 'libffi' 'sane' 'unixodbc' 'gst-plugins-base-libs'
     'mariadb-libs' 'postgresql-libs' 'rhino'
 )
@@ -140,12 +140,12 @@ build() {
         --with-system-libstaroffice \
         --with-system-libxml \
         --with-system-libcdr \
-        --with-system-mdds \
+        --without-system-mdds \
         --with-system-libvisio \
         --with-system-libcmis \
         --with-system-libmspub \
         --with-system-libexttextcat \
-        --with-system-orcus \
+        --without-system-orcus \
         --with-system-liblangtag \
         --with-system-libodfgen \
         --with-system-libmwaw \
