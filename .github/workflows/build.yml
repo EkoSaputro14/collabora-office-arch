@@ -12,73 +12,38 @@ on:
   workflow_dispatch:
 
 jobs:
-  build-arch-package:
+  build-and-test:
+    name: Build Native Arch Package & Smoke Test
     runs-on: ubuntu-latest
-    container:
-      image: archlinux:base-devel
-      options: --privileged
+    timeout-minutes: 360
 
     steps:
-      - name: Update system & Install Build Prerequisites
+      - name: Free Disk Space on Host Runner
         run: |
-          pacman -Syu --noconfirm
-          pacman -S --needed --noconfirm \
-            git ccache sudo \
-            curl hunspell python libwpd libwps neon pango nspr libjpeg-turbo \
-            libxrandr libgl redland hyphen lpsolve graphite icu libxslt lcms2 \
-            poppler libvisio libetonyek libodfgen libcdr libmspub harfbuzz-icu \
-            nss clucene hicolor-icon-theme libpagemaker libxinerama libabw \
-            libmwaw libe-book libcups liblangtag libexttextcat liborcus libwebp \
-            libcmis libtommath libzmf libatomic_ops xmlsec libnumbertext gpgmepp \
-            libfreehand libstaroffice libepubgen libqxp libepoxy zxing-cpp \
-            xdg-utils fontconfig zlib libpng freetype2 cairo libx11 expat glib2 \
-            boost-libs libtiff dbus glibc librevenge libxext openjpeg2 argon2 md4c \
-            gcc clang perl-archive-zip zip unzip gperf gtk3 qt6-base boost mdds \
-            glm fast_float dragonbox box2d cppunit beanshell ant \
-            java-environment=17 coin-or-mp doxygen
-
-      - name: Setup Non-Root Build User
-        run: |
-          useradd -m -G wheel builder
-          echo "builder ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-          mkdir -p /workspace
-          chown -R builder:builder /workspace
+          echo "==> Freeing disk space on GitHub Actions runner..."
+          df -h
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/share/swift
+          df -h
 
       - name: Checkout Packaging Repository
         uses: actions/checkout@v4
-        with:
-          path: /workspace/collabora-office-arch
 
-      - name: Setup ccache
+      - name: Run Build in Clean Arch Linux Container
         run: |
-          mkdir -p /home/builder/.ccache
-          chown -R builder:builder /home/builder/.ccache
+          mkdir -p "${GITHUB_WORKSPACE}/artifacts"
+          chmod -R 777 "${GITHUB_WORKSPACE}"
 
-      - name: Cache ccache
-        uses: actions/cache@v4
-        with:
-          path: /home/builder/.ccache
-          key: ccache-collabora-${{ github.sha }}
-          restore-keys: |
-            ccache-collabora-
+          docker run --rm --privileged \
+            -v "${GITHUB_WORKSPACE}:/workspace" \
+            -w /workspace \
+            docker.io/archlinux:base-devel \
+            bash /workspace/scripts/ci-build-and-test.sh
 
-      - name: Build Package via makepkg
-        run: |
-          su - builder -c "
-            cd /workspace/collabora-office-arch
-            makepkg -s --noconfirm
-          "
-
-      - name: Run Structural Package Verification
-        run: |
-          su - builder -c "
-            cd /workspace/collabora-office-arch
-            ./testing/test-pkg.sh
-          "
-
-      - name: Upload Native Package Artifact
+      - name: Upload Build Artifacts (.pkg.tar.zst & Logs)
         uses: actions/upload-artifact@v4
+        if: always()
         with:
-          name: collabora-office-x86_64.pkg.tar.zst
-          path: /workspace/collabora-office-arch/collabora-office-*.pkg.tar.zst
+          name: collabora-office-arch-build-artifacts
+          path: |
+            ${{ github.workspace }}/artifacts/*
           if-no-files-found: error
